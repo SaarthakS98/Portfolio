@@ -1,14 +1,22 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient, type SupabaseClient } from '@supabase/supabase-js';
 
-export const supabaseAnon = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_ANON_KEY!,
-  { auth: { persistSession: false } }
-);
+let _anon: SupabaseClient | null = null;
+let _service: SupabaseClient | null = null;
 
-// Server-only client with service role (for inserts/ingest)
-export const supabaseService = createClient(
-  process.env.SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!,
-  { auth: { persistSession: false } }
-);
+export function getSupabaseAnon(): SupabaseClient {
+  if (_anon) return _anon;
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_ANON_KEY;
+  if (!url || !key) throw new Error('Server misconfigured: Supabase anon vars missing');
+  _anon = createClient(url, key, { auth: { persistSession: false } });
+  return _anon;
+}
+
+export function getSupabaseService(): SupabaseClient {
+  if (_service) return _service;
+  const url = process.env.SUPABASE_URL;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  if (!url || !key) throw new Error('Server misconfigured: Supabase service vars missing');
+  _service = createClient(url, key, { auth: { persistSession: false } });
+  return _service;
+}
