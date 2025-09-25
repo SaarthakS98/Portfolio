@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getOpenAI } from '@/lib/openai';
-import { getSupabaseService } from '@/lib/supabase';
+import { getGeminiClient, embedText } from '@/lib/gemini';
+import { getSupabaseService } from '@/lib/supabase'; // if you used lazy getters earlier
 import { splitIntoChunks, type Chunk } from '@/lib/chunk';
 
 export const runtime = 'nodejs';
@@ -15,7 +15,8 @@ export async function POST(req: NextRequest) {
   const { title, text, doc_type, source_url } = body;
   if (!title || !text) return NextResponse.json({ error: 'title & text required' }, { status: 400 });
 
-  const openai = getOpenAI();
+  // initialize clients (ensures env present)
+  getGeminiClient();
   const supabase = getSupabaseService();
 
   const { data: doc, error: dErr } = await supabase
@@ -26,12 +27,8 @@ export async function POST(req: NextRequest) {
   if (dErr || !doc) return NextResponse.json({ error: dErr?.message ?? 'Insert failed' }, { status: 500 });
 
   const chunks: Chunk[] = splitIntoChunks(text, 600, 80);
-  const embeddings: number[][] = await Promise.all(
-    chunks.map(async (c) => {
-      const e = await openai.embeddings.create({ model: 'text-embedding-3-small', input: c.text });
-      return e.data[0].embedding;
-    })
-  );
+
+  const embeddings: number[][] = await Promise.all(chunks.map(c => embedText(c.text)));
 
   const rows: NewChunkRow[] = chunks.map((c, i) => ({
     doc_id: String(doc.id),
