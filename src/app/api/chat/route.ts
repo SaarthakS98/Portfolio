@@ -1,5 +1,5 @@
 import { NextRequest } from 'next/server';
-import { getGeminiModel } from '@/lib/gemini';
+import { getGeminiModel, embedText } from '@/lib/gemini';   // ⟵ add embedText
 import { getSupabaseAnon } from '@/lib/supabase';
 import { SYSTEM } from '@/lib/prompt';
 
@@ -28,18 +28,24 @@ export async function POST(req: NextRequest) {
 
   const supabase = getSupabaseAnon();
 
-  // We already store embeddings in DB; for retrieval we use the RPC (hybrid)
+  // ✅ embed the query with Gemini (768-dim)
+  const qvec = await embedText(userMsg);
+
+  // ✅ pass the embedding to the RPC
   const { data: matches, error } = await supabase.rpc('match_chunks', {
-    // pass a dummy embedding here only if your RPC requires it—ours builds from query text + stored embeddings.
-    // If your RPC expects a vector for similarity, embed the query with Gemini and pass it:
-    // query_embedding: await embedText(userMsg),
-    query_embedding: null,           // <-- If your SQL function requires it, switch to embedText(userMsg)
+    query_embedding: qvec,
     query_text: userMsg,
     match_count: 10,
   });
   if (error) return new Response(error.message, { status: 500 });
 
   const rows: DbMatch[] = (matches ?? []) as DbMatch[];
+  if (rows.length === 0 || rows[0].hybrid_score < 0.20) {
+    return Response.json({
+      answer: "I don't have relevant context yet. Please add it on /admin.",
+      references: []
+    });
+  }
 
   const withTitles: MatchWithTitle[] = await Promise.all(
     rows.map(async (m) => {
@@ -50,8 +56,7 @@ export async function POST(req: NextRequest) {
 
   const { ctx } = formatContext(withTitles);
 
-  // Gemini generation
-  const model = getGeminiModel('gemini-1.5-flash', SYSTEM); // fast + cheap; switch to 1.5-pro for max quality
+  const model = getGeminiModel('gemini-1.5-flash', SYSTEM);
   const prompt = `Context:\n${ctx}\n\nQuestion: ${userMsg}\n\nAnswer with citations.`;
   const result = await model.generateContent(prompt);
   const answer = result.response.text();
