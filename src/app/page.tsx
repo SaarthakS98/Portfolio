@@ -29,9 +29,8 @@ export default function Page() {
 
       {/* Experience Section */}
       <section className="rounded-2xl bg-[#e5e5e5] p-8 shadow-sm dark:bg-neutral-800">
-        <div className="grid gap-8 md:grid-cols-2">
-          <ExperienceColumn title="Work Experience" />
-          <ExperienceColumn title="Work Experience" />
+        <div className="grid gap-8 md:grid-cols-1">
+          <ExperienceColumn title="Industry Experience" />
         </div>
       </section>
 
@@ -39,7 +38,7 @@ export default function Page() {
       <section className="space-y-4 rounded-2xl bg-white p-8 shadow-sm dark:bg-neutral-900">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold">
-            Selected <span className="font-extrabold">Projects</span>
+            <span className="font-bold">Projects</span>
           </h2>
           <a href="/projects" className="text-sm font-medium text-neutral-600 hover:text-black dark:text-neutral-400 dark:hover:text-white">
             See All
@@ -57,10 +56,9 @@ export default function Page() {
 
 function ExperienceColumn({ title }: { title: string }) {
   const items = [
-    { role: "Product Designer at Uber", when: "February 2023 — April 2025" },
-    { role: "Product Designer at Uber", when: "February 2023 — April 2025" },
-    { role: "Product Designer at Uber", when: "February 2023 — April 2025" },
-    { role: "Product Designer at Uber", when: "February 2023 — April 2025" },
+    { role: "Machine Learning Intern, Engineering and Research, HCLTech", when: "June – Sep, 2025" },
+    { role: "Machine Learning Intern, QuantHive Research", when: "January – May, 2025" },
+    { role: "Data Engineering Intern, Pabay Software", when: "July – December, 2023" },
   ];
   return (
     <div className="rounded-xl bg-[#efefef] p-6 dark:bg-neutral-700">
@@ -71,10 +69,10 @@ function ExperienceColumn({ title }: { title: string }) {
       <ul className="space-y-4">
         {items.map((item, i) => (
           <li key={i} className="flex gap-3">
-            <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-md border border-neutral-400 bg-white dark:border-neutral-500 dark:bg-neutral-600" />
+            
             <div>
               <p className="text-[15px] font-medium">{item.role}</p>
-              <p className="text-xs text-neutral-500 dark:text-neutral-400">{item.when}</p>
+              <p className="text-sm text-neutral-500 dark:text-neutral-400">{item.when}</p>
             </div>
           </li>
         ))}
