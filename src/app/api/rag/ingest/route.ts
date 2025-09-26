@@ -5,7 +5,7 @@ export const runtime = 'nodejs';
 interface IngestRequest {
   title: string;
   content: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
 }
 
 // Temporary simple version
