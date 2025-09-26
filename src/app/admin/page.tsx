@@ -16,7 +16,13 @@ export default function AdminPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [documents, setDocuments] = useState<Document[]>([]);
-  const [systemStatus, setSystemStatus] = useState<any>(null);
+  interface SystemStatus {
+  status: string;
+  documentsInIndex: number;
+  timestamp: string;
+}
+
+  const [systemStatus, setSystemStatus] = useState<SystemStatus | null>(null);
 
   useEffect(() => {
     loadDocuments();
