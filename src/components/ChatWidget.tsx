@@ -58,6 +58,7 @@ export default function ChatWidget() {
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
+      console.error('ChatWidget error:', error);
       const errorMessage: ChatMessage = {
         role: 'assistant',
         content: 'Sorry, there was an error processing your request. Please try again.',
@@ -121,7 +122,7 @@ export default function ChatWidget() {
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
             {messages.length === 0 && (
               <div className="text-center text-neutral-500 dark:text-neutral-400 text-sm">
-                <p>👋 Hi! I'm here to help you learn more about Saarthak.</p>
+                <p>👋 Hi! I am here to help you learn more about Saarthak.</p>
                 <p className="mt-2">Ask me about his experience, projects, or skills!</p>
               </div>
             )}
