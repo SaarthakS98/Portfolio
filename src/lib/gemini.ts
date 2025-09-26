@@ -19,6 +19,8 @@ export function getGeminiModel(modelName: string, systemInstruction?: string): G
 
 export async function embedText(input: string): Promise<number[]> {
   const client = getGeminiClient();
+  // Updated embedding model name: text-embedding-004 is correct
+  // Alternative stable model: gemini-embedding-001
   const model = client.getGenerativeModel({ model: 'text-embedding-004' });
   const res = await model.embedContent(input);
   return res.embedding.values as number[];

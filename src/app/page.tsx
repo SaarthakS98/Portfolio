@@ -1,5 +1,6 @@
 "use client";
 import ProjectCard from "@/components/ProjectCard";
+import ChatWidget from "@/components/ChatWidget";
 import { useTheme } from "next-themes";
 
 export default function Page() {
@@ -8,6 +9,7 @@ export default function Page() {
   console.log("Resolved theme:", resolvedTheme);
   
   return (
+    <>
     <main className="space-y-10">
      {/* Hero */}
       <section className="rounded-2xl bg-white p-8 shadow-sm dark:bg-neutral-900">
@@ -51,6 +53,9 @@ export default function Page() {
         </div>
       </section>
     </main>
+    {/* Floating Chat Widget */}
+      <ChatWidget />
+    </>
   );
 }
 
