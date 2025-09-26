@@ -19,7 +19,7 @@ export class DatabaseService {
   async createDocument(
     title: string, 
     content: string, 
-    metadata: Record<string, any> = {}
+    metadata: Record<string, unknown> = {}
   ): Promise<Document> {
     const { data, error } = await this.supabase
       .from('documents')

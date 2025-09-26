@@ -3,7 +3,7 @@ export interface Document {
   id: string;
   title: string;
   content: string;
-  metadata?: Record<string, any>;
+  metadata?: Record<string, unknown>;
   created_at: string;
   updated_at: string;
 }
@@ -25,7 +25,7 @@ export interface SearchResult {
   chunk_index: number;
   similarity: number;
   document_title: string;
-  document_metadata: Record<string, any>;
+  document_metadata: Record<string, unknown>;
 }
 
 export interface ChatMessage {

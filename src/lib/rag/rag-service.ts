@@ -16,7 +16,7 @@ export class RAGService {
   async ingestDocument(
     title: string,
     content: string,
-    metadata: Record<string, any> = {}
+    metadata: Record<string, unknown> = {}
   ): Promise<{ documentId: string; chunksCreated: number }> {
     // Create the document
     const document = await this.dbService.createDocument(title, content, metadata);
