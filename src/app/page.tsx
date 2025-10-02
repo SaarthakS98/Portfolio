@@ -83,29 +83,79 @@ export default function Page() {
 
       {/* ===== Work Experience ===== */}
       <section className="rounded-2xl bg-neutral-900 p-8 text-neutral-50 dark:bg-neutral-950">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-6 flex items-end justify-between">
-            <h2 className="text-3xl font-semibold sm:text-4xl">Work Experience</h2>
-            <Link href="/projects" className="text-sm text-neutral-300 hover:text-white">
-              See More &gt;
-            </Link>
-          </div>
+          <div className="mx-auto max-w-6xl">
+            <div className="mb-6 flex items-end justify-between">
+              <h2 className="text-3xl font-semibold sm:text-4xl">Experiences</h2>
+              {/* ⬇️ route to the Experiences page */}
+              <Link href="/experiences" className="text-sm text-neutral-300 hover:text-white">
+                See All &gt;
+              </Link>
+            </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex items-start gap-4 rounded-xl bg-neutral-800 p-4">
-                <div className="mt-1 h-6 w-6 shrink-0 rounded-md bg-white/90" />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {/* Card 1 */}
+              <Link
+                href="/experiences#prajish-prasad"
+                className="group flex items-start gap-4 rounded-xl bg-neutral-800 p-4 ring-1 ring-white/10 hover:bg-neutral-700 hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+                aria-label="Research Internship with Prof. Prajish Prasad"
+              >
+                <div className="mt-1 h-6 w-6 shrink-0 rounded-md bg-white/90 group-hover:bg-white" />
                 <div>
                   <p className="font-medium">
-                    Product Designer at <span className="font-semibold">Uber</span>
+                    Research Internship with <span className="font-semibold">Prof. Prajish Prasad</span>
                   </p>
-                  <p className="text-sm text-neutral-300">February 2023 – April 2025</p>
+                  <p className="text-sm text-neutral-300">October 2025 – January 2025</p>
                 </div>
-              </div>
-            ))}
+              </Link>
+
+              {/* Card 2 */}
+              <Link
+                href="/experiences#hcl"
+                className="group flex items-start gap-4 rounded-xl bg-neutral-800 p-4 ring-1 ring-white/10 hover:bg-neutral-700 hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+                aria-label="Machine Learning Intern at HCL Technologies"
+              >
+                <div className="mt-1 h-6 w-6 shrink-0 rounded-md bg-white/90 group-hover:bg-white" />
+                <div>
+                  <p className="font-medium">
+                    Machine Learning Intern at <span className="font-semibold">HCL Technologies</span>
+                  </p>
+                  <p className="text-sm text-neutral-300">June 2025 – September 2025</p>
+                </div>
+              </Link>
+
+              {/* Card 3 */}
+              <Link
+                href="/experiences#quanthive"
+                className="group flex items-start gap-4 rounded-xl bg-neutral-800 p-4 ring-1 ring-white/10 hover:bg-neutral-700 hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+                aria-label="Machine Learning Intern at QuantHive Research Tech"
+              >
+                <div className="mt-1 h-6 w-6 shrink-0 rounded-md bg-white/90 group-hover:bg-white" />
+                <div>
+                  <p className="font-medium">
+                    Machine Learning Intern at <span className="font-semibold">QuantHive Research Tech</span>
+                  </p>
+                  <p className="text-sm text-neutral-300">January 2025 – May 2025</p>
+                </div>
+              </Link>
+
+              {/* Card 4 */}
+              <Link
+                href="/experiences#pabay"
+                className="group flex items-start gap-4 rounded-xl bg-neutral-800 p-4 ring-1 ring-white/10 hover:bg-neutral-700 hover:ring-white/20 focus:outline-none focus:ring-2 focus:ring-white/40"
+                aria-label="Data Engineering Intern at Pabay Softwares"
+              >
+                <div className="mt-1 h-6 w-6 shrink-0 rounded-md bg-white/90 group-hover:bg-white" />
+                <div>
+                  <p className="font-medium">
+                    Data Engineering Intern at <span className="font-semibold">Pabay Softwares</span>
+                  </p>
+                  <p className="text-sm text-neutral-300">July 2023 – November 2023</p>
+                </div>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+
 
       {/* ===== Selected Projects ===== */}
       <section className="space-y-6">

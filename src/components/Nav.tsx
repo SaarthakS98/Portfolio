@@ -7,6 +7,7 @@ const links = [
   { href: "/", label: "HOME" },
   { href: "/about", label: "ABOUT ME" },
   { href: "/coursework", label: "COURSEWORK" },
+  { href: "/experiences", label: "EXPERIENCES" },
   { href: "/projects", label: "PROJECTS" },
   { href: "/certificates", label: "EXTRACURRICULARS" },
   { href: "/test-scores", label: "TEST SCORES/DOCS" }
