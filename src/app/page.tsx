@@ -16,7 +16,7 @@ export default function Page() {
               I am <span className="text-black dark:text-white">Saarthak Singhal</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-neutral-700 dark:text-neutral-300">
-              An aspiring artificial intelligence researcher and a full-stack developer with a passion for learning and building innovative solutions for problems around me"
+              An aspiring artificial intelligence researcher and a full-stack developer with a passion for learning and building innovative solutions for problems around me
             </p>
           </div>
 
