@@ -52,13 +52,22 @@ const links = [
   { href: "/about", label: "ABOUT ME" },
   { href: "/coursework", label: "COURSEWORK" },
   { href: "/projects", label: "PROJECTS/INTERNSHIPS" },
-  { href: "/certificates", label: "CERTIFICATES" },
+  { href: "/certificates", label: "EXTRACURRICULARS" },
 ];
 
 export default function Nav() {
   const pathname = usePathname() || "/";
   return (
-    <header className="sticky top-0 z-30 bg-[#d9d9d9]/70 backdrop-blur supports-[backdrop-filter]:bg-[#d9d9d9]/60 dark:bg-neutral-900/60">
+   <header
+  className="
+    sticky top-3           /* gap from top even when sticky */
+    z-30
+    mx-4                   /* side gap so rounded corners show */
+    rounded-2xl            /* soft curved edges */
+    bg-[#97C2EC]/90           /* light theme blue */
+    backdrop-blur supports-[backdrop-filter]:bg-[#97C2EC]/80 dark:bg-neutral-900/60
+  "
+>
       <div className="mx-auto max-w-6xl px-4">
         <nav className="flex h-14 items-center gap-6">
           {links.map(({ href, label }) => {

@@ -6,10 +6,10 @@ import ProjectCard from "@/components/ProjectCard";
 
 export default function Page() {
   return (
-    <main className="space-y-20">
+    <main className="space-y-12 md:space-y-16">
       {/* ===== HERO ===== */}
-      <section className="rounded-2xl bg-white p-8 shadow-sm dark:bg-neutral-900">
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+      <section className="pt-6 md:pt-10">
+  <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
           <div>
             <p className="text-3xl sm:text-4xl">Hello!</p>
             <h1 className="mt-2 text-4xl font-semibold sm:text-5xl">
@@ -21,7 +21,7 @@ export default function Page() {
           </div>
 
           {/* Right image */}
-          <div className="relative mx-auto aspect-[4/5] w-64 overflow-hidden rounded-2xl sm:w-72 md:w-80">
+          {/* <div className="relative mx-auto aspect-[4/5] w-64 overflow-hidden rounded-2xl sm:w-72 md:w-80">
             <Image
                 alt="Saarthak headshot"
                 src="/headshot.jpg"     // <— local file in /public
@@ -29,7 +29,24 @@ export default function Page() {
                 height={1000}
                 className="object-cover rounded-2xl"
               />
-          </div>
+          </div> */}
+          <div
+  className="
+    relative ml-auto
+    h-64 sm:h-72 md:h-80        /* ↓ shorter at each breakpoint */
+    aspect-[3/4]                /* a bit less tall than 4/5 */
+    max-w-full overflow-hidden rounded-2xl
+    ring-1 ring-black/10 dark:ring-white/10
+  "
+>
+  <Image
+    fill
+    alt="Saarthak headshot"
+    src="/headshot.jpg"
+    className="object-cover"
+  />
+</div>
+
         </div>
       </section>
 

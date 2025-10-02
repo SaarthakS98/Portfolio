@@ -3,9 +3,8 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import ThemeProvider from "@/components/ThemeProvider";
 import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
+import { GeistMono } from 'geist/font/mono' 
 
-// Then update your body className:
 <body className={`${GeistSans.className} min-h-screen bg-[#f5f5f5] text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}></body>
 
 export const metadata: Metadata = {
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="min-h-screen bg-[#f5f5f5] text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+      <body className={`${GeistSans.className} ${GeistMono.variable} min-h-screen bg-[#f5f5f5] text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100`}>
         <ThemeProvider>
           <Nav />
           <div className="mx-auto max-w-6xl px-4 py-8">{children}</div>
