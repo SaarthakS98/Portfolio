@@ -11,7 +11,7 @@ export default function Page() {
       <section className="pt-6 md:pt-10">
   <div className="mx-auto max-w-6xl px-4 grid grid-cols-1 items-center gap-8 md:grid-cols-2">
           <div>
-            <p className="text-3xl sm:text-4xl">Hello!</p>
+            <p className="text-3xl sm:text-4xl">Hello</p>
             <h1 className="mt-2 text-4xl font-semibold sm:text-5xl">
               I am <span className="text-black dark:text-white">Saarthak Singhal</span>
             </h1>
@@ -54,11 +54,9 @@ export default function Page() {
       <section className="rounded-2xl bg-[#d7cebf] p-6 shadow-sm dark:bg-neutral-800">
         <div className="grid grid-cols-1 items-center gap-6 md:grid-cols-[1.2fr_1fr]">
           <div className="p-2 sm:p-4">
-            <h2 className="text-3xl font-semibold sm:text-4xl">A bit about me...</h2>
+            <h2 className="text-3xl font-semibold sm:text-4xl">A bit about me</h2>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-neutral-800 dark:text-neutral-200">
-              Canada has issued 31% fewer study permits to Indian students in 2025 compared to last year.
-              With stricter rules, higher proof-of-funds requirements, and new provincial attestation
-              processes, planning your overseas education has never been more critical.
+              Some text about me
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 // src/app/about/page.tsx
 export const metadata = {
-  title: "About — Saarthak Singhal",
+  title: "Saarthak Singhal",
   description: "About me",
 };
 
