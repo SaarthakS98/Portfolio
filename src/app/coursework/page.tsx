@@ -126,8 +126,16 @@ function CourseSection({ title, courses, sectionKey, expandedItems, toggleExpand
       <h3 className="text-xl font-semibold text-neutral-900 dark:text-white border-b border-neutral-200 dark:border-neutral-700 pb-2">
         {title}
       </h3>
+      <h3 className="font-semibold"> 
+      CGPA of 9.03 
+      </h3>
+      <h5>
+  Rankings are awarded only after completion of the program. For context in the last term (F2-2025) a student with the CGPA of 9.03 graduated with a batch rank of
+  <span className="font-semibold"> 6 out of 111</span> students who passed out in that term.
+</h5>
+
       <h4 className="text-2xs">
-          Below are some important courses. For a full list of courses and grades, look at my transcript available here
+          Below are some important courses. For a full list of courses and grades, the latest transcript can be found in the TEST SCORES tab.
         </h4>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">

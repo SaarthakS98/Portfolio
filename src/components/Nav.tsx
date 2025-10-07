@@ -10,7 +10,7 @@ const links = [
   { href: "/experiences", label: "EXPERIENCES" },
   { href: "/projects", label: "PROJECTS" },
   { href: "/certificates", label: "EXTRACURRICULARS" },
-  { href: "/test-scores", label: "TEST SCORES/DOCS" }
+  { href: "/test-scores", label: "TEST SCORES" }
 ];
 
 export default function Nav() {

@@ -16,7 +16,7 @@ type Experience = {
 
 const EXPERIENCES: Experience[] = [
   {
-    role: "Research Intern",
+    role: "Research Intern, Computing and Data Sciences",
     org: "Prof. Prajish Prasad, Flame University",
     period: "October 2025 – January 2026",
     location: "Remote, India",
