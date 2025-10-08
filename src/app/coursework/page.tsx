@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 type CourseItem = {
   title: string;
@@ -7,7 +7,6 @@ type CourseItem = {
   link?: string;
   description: string;
   skills?: string[];
-  grade?: string;
 };
 
 const dataScienceAICourses: CourseItem[] = [
@@ -16,90 +15,99 @@ const dataScienceAICourses: CourseItem[] = [
     period: "Sep 2025",
     link: "https://study.iitm.ac.in/ds/course_pages/BSDA5002.html",
     description: "This course explores deep generative models such as VAEs, GANs, autoregressive models, diffusion models, and large language models, focusing on their probabilistic foundations, learning algorithms, and practical implementations in PyTorch. Through lectures and assignments, I hope to gain hands-on experience applying these models to various AI tasks.",
-    skills: ["AI Theory", "PyTorch", "Mathematics for AI", "GenAI Minor"],
-    grade: "Currently Enrolled"
+    skills: ["PyTorch", "Theoretical AI/ML", "Mathematics"],
   },
   {
     title: "Deep Learning Practice",
     period: "Sep 2025", 
     link: "https://study.iitm.ac.in/ds/course_pages/BSDA5013.html",
     description: "Taught by three excellent professors, this course hopes to equip students with the full deep learning stack—covering datasets, frameworks, hardware, deployment, interpretability, and security—while applying tools and best practices to improve training and deployment under real-world constraints. I hope to gain experience in training large-scale models and identifying socially relevant problems that can be addressed using deep learning.",
-    skills: ["NLP", "Speech Technology", "Computer Vision", "PyTorch", "GenAI Minor"],
-    grade: "Currently Enrolled"
+    skills: ["NLP", "Speech Technology", "Computer Vision", "PyTorch", "Deep Learning"],
   },
   {
     title: "Reinforcement Learning",
     period: "Sep 2025",
     link: "https://study.iitm.ac.in/ds/course_pages/BSDA5007.html",
     description: "Taught by Prof. Balaraman Ravindran, this course covers the fundamentals of reinforcement learning, including Markov decision processes, dynamic programming, Monte Carlo methods, temporal-difference learning, and function approximation. I hope the intensive assignments in the course allows me to learn implementing RL algorithms",
-    skills: ["RL", "AI Theory", "PyTorch"],
-    grade: "Currently Enrolled"
+    skills: ["", "Theoretical AI/ML", "PyTorch"]
   },
   {
     title: "Large Language Models",
     period: "May 2025",
     link: "https://study.iitm.ac.in/ds/course_pages/BSDA5004.html",
     description: "One of my favorite courses so far, this course covered the architecture, training, and applications of large language models (LLMs) like GPT and BERT. I learned about transformer architectures, attention mechanisms, and techniques for fine-tuning LLMs for various NLP tasks. Prompted me to choose Generative AI as my minor.",
-    skills: ["AI Theory", "Mathematics for AI", "PyTorch", "NLP", "GenAI Minor"],
-    grade: "S"
+    skills: ["Theoretical AI/ML", "Mathematics", "PyTorch", "NLP", "Deep Learning"]
   },
   {
     title: "Game Theory and Strategy",
     period: "May 2025",
     link: "https://study.iitm.ac.in/ds/course_pages/BSMS4023.html",
     description: "Learned the mathematical modeling of strategic interactions among rational agents. Covered concepts like Nash equilibrium, dominant strategies, and mixed strategies, with applications in economics, political science, and computer science.  Dr. Bikramaditya Datta really made the concepts come alive with his practical examples and applications.",
-    skills: ["Game Theory", "Mathematical Modeling", "Strategic Thinking"],
-    grade: "A"
+    skills: ["Game Theory", "Mathematics", "Strategic Thinking"],
   },
   {
     title: "Software Testing",
     period: "May 2025",
     link: "https://study.iitm.ac.in/ds/course_pages/BSCS3002.html",
     description: "A core course, it provided a comprehensive overview of software testing principles and practices. Taught using Java, covered various testing techniques, including unit testing, integration testing, system testing, and acceptance testing. Learned about test automation and test-driven development (TDD)",
-    skills: ["Software Testing", "Java", "Test Automation", "TDD"],
-    grade: "A"
+    skills: ["Software Testing", "Java", "Computer Science"],
   },
   {
     title: "Stochastic Methods in Industry",
     period: "Jan 2025",
     link: "https://math.iitm.ac.in/program-mtech-new.php",
     description: "Learned the mathematical and statistical techniques used to model and analyze systems that involve randomness and uncertainty. Studied how such techniques in the context of inventory and stock control, reliability theory, quality control and simulations. Loved the course, however, would have loved to have scored higher :P .",
-    skills: ["Stochastic Processes", "Statistics", "Business Applications", "Mathematics"],
-    grade: "B"
+    skills: ["Stochastic Processes", "Statistics", "Business Applications", "Mathematics"]
   },
   {
     title: "Data Analysis & Visualization in R/Python/SQL",
     period: "Jan 2025",
     link: "https://math.iitm.ac.in/program-mtech-new.php",
     description: "This course provided a comprehensive overview of data analysis and visualization techniques using R, Python, and SQL. Had a fun team project where we analyzed government revenue reports and created a tool for modelling government expenditures with expected outcomes.",
-    skills: ["Data Analysis", "Data Visualization", "R", "Python", "SQL"],
-    grade: "A"
+    skills: ["Data Analysis", "Data Visualization", "R", "Python", "SQL"]
   },
   {
     title: "Software Engineering",
     period: "Sep 2024",
     link: "https://study.iitm.ac.in/ds/course_pages/BSCS3001.html",
     description: "A core course, it provided a comprehensive overview of software engineering principles and practices. Covered software development life cycle (SDLC), Agile methodologies, software design patterns, and project management. Completed a semester-long group project to develop an AI integrated course and project management tool for students and course instructors using Agile practices. Prof. Prajish Prasad's insights and guidance throughout the project were invaluable.",
-    skills: ["Software Development", "Agile", "Project Management", "Java"],
-    grade: "S"
+    skills: ["Computer Science", "Project Management", "Java"]
   },
   {
     title: "Deep Learning",
     period: "May 2024",
     link: "https://study.iitm.ac.in/ds/course_pages/BSCS3004.html",
     description: "A core course, it provided a solid foundation in deep learning concepts and techniques. Covered neural networks, convolutional neural networks (CNNs), recurrent neural networks (RNNs). Implemented small models using PyTorch such as a CNN for Image Classification on CIFAR-10 dataset, RNN for Sentiment Analysis on Yelp Reviews",
-    skills: ["Deep Learning", "Neural Networks", "PyTorch"],
-    grade: "A"
+    skills: ["Deep Learning", "Theoretical AI/ML", "PyTorch"]
   },
   {
     title: "AI: Search Methods for Problem Solving",
     period: "May 2024",
     link: "https://study.iitm.ac.in/ds/course_pages/BSCS3003.html",
     description: "Another core course, it provided a comprehensive introduction to symbolic AI. Introduced to the famous Travelling Salesman Problem and various board games and how to search their state spaces using various algorithms such as A*, Minimax, Alpha-Beta Pruning, etc. Implemented these algorithms in Python.",
-    skills: ["AI Algorithms", "Search Techniques", "Python"],
-    grade: "S"
-  }, 
-
+    skills: ["Algorithms", "Theoretical AI/ML", "Python"]
+  },
+  {
+    title: "Database Management Systems",
+    period: "Jan 2024",
+    link: "https://study.iitm.ac.in/ds/course_pages/BSCS2001.html",
+    description: "A core course, it provided a solid foundation in database management systems (DBMS) concepts and techniques. Covered relational databases, SQL, normalization, indexing, and transactions. Implemented a mini project to design and develop a library management system using MySQL.",
+    skills: ["SQL", "Database Design", "PostgreSQL", "Computer Science"]
+  },
+  {
+    title: "Programming, Data Structures & Algorithms using Python",
+    period: "Jan 2024",
+    link: "https://study.iitm.ac.in/ds/course_pages/BSCS2002.html",
+    description: "A core course, it provided a comprehensive introduction to programming, data structures, and algorithms using Python. Covered fundamental programming concepts, data structures (arrays, linked lists, stacks, queues, trees, graphs), and algorithm design and analysis. Implemented various algorithms and data structures in Python.",
+    skills: ["Python", "Algorithms", "Data Structures", "Computer Science"]
+  },
+  {
+    title: "Programming Concepts using Java",
+    period: "Jan 2024",
+    link: "https://study.iitm.ac.in/ds/course_pages/BSCS2005.html",
+    description: "A core course, it provided a comprehensive introduction to programming concepts using Java. Covered fundamental programming concepts, object-oriented programming (OOP), exception handling, file I/O, and GUI programming. Implemented various programs and mini projects in Java.",
+    skills: ["Java", "Object-Oriented Programming", "Computer Science"]
+  }
 ];
 
 const lawCourses: CourseItem[] = [
@@ -107,8 +115,7 @@ const lawCourses: CourseItem[] = [
     title: "Technology Law and Policy",
     period: "Fall 2024",
     description: "Legal frameworks governing technology, including data privacy laws, intellectual property in software, cybersecurity regulations, and AI governance.",
-    skills: ["Legal Research", "Privacy Law", "IP Law", "AI Ethics"],
-    grade: "A-"
+    skills: []
   },
 ];
 
@@ -136,8 +143,7 @@ function CourseSection({ title, courses, sectionKey, expandedItems, toggleExpand
 
       <h4 className="text-2xs">
           Below are some important courses. For a full list of courses and grades, the latest transcript can be found in the TEST SCORES tab.
-        </h4>
-      
+      </h4>      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
         {courses.map((course, index) => {
           const itemKey = `${sectionKey}-${index}`;
@@ -159,11 +165,6 @@ function CourseSection({ title, courses, sectionKey, expandedItems, toggleExpand
                     <p className="text-sm text-neutral-600 dark:text-neutral-400">
                       {course.period}
                     </p>
-                    {course.grade && (
-                      <span className="text-xs font-medium bg-green-100 text-green-800 px-2 py-1 rounded-full dark:bg-green-900 dark:text-green-200">
-                        Grade: {course.grade}
-                      </span>
-                    )}
                   </div>
                 </div>
                 
@@ -233,6 +234,35 @@ function CourseSection({ title, courses, sectionKey, expandedItems, toggleExpand
 
 export default function CourseworkSection() {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
+  // --- Skills filter state & helpers ---
+  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
+
+  const allSkills = useMemo(
+    () =>
+      Array.from(
+        new Set(
+          [...dataScienceAICourses, ...lawCourses].flatMap(c => c.skills ?? [])
+        )
+      ).sort(),
+    []
+  );
+
+  const toggleSkill = (skill: string) =>
+    setSelectedSkills(prev => {
+      const next = new Set(prev);
+      next.has(skill) ? next.delete(skill) : next.add(skill);
+      return next;
+    });
+
+  const clearSkills = () => setSelectedSkills(new Set());
+
+  const filterBySkills = (courses: CourseItem[]) =>
+    selectedSkills.size === 0
+      ? courses
+      : courses.filter(c =>
+        (c.skills ?? []).some(s => selectedSkills.has(s))
+      );
+
 
   const toggleExpanded = (key: string) => {
     const newExpanded = new Set(expandedItems);
@@ -254,10 +284,42 @@ export default function CourseworkSection() {
           Click on any course to see details
         </p>
       </div>
-      
+      {/* Skills Filter */}
+      <div className="mb-4 flex flex-wrap items-center gap-2">
+        <span className="text-sm font-medium text-neutral-800 dark:text-neutral-200">
+          Filter by skills:
+        </span>
+
+        {allSkills.map((skill) => (
+          <button
+            key={skill}
+            type="button"
+            onClick={() => toggleSkill(skill)}
+            className={
+              "text-xs rounded-full px-3 py-1 border transition-colors " +
+              (selectedSkills.has(skill)
+                ? "bg-blue-600 text-white border-blue-600"
+                : "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 border-neutral-300 dark:border-neutral-600 hover:bg-neutral-200 dark:hover:bg-neutral-700")
+            }
+          >
+            {skill}
+          </button>
+        ))}
+
+        {selectedSkills.size > 0 && (
+          <button
+            type="button"
+            onClick={clearSkills}
+            className="text-xs underline text-neutral-700 dark:text-neutral-300 ml-1"
+          >
+            Clear
+          </button>
+        )}
+      </div>
+
       <CourseSection 
         title="B.S. in Data Science and Applications (Minor in Generative AI)"
-        courses={dataScienceAICourses}
+        courses={filterBySkills(dataScienceAICourses)}
         sectionKey="ds-ai"
         expandedItems={expandedItems}
         toggleExpanded={toggleExpanded}
