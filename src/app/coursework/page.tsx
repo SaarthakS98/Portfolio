@@ -22,14 +22,14 @@ const dataScienceAICourses: CourseItem[] = [
     period: "Sep 2025", 
     link: "https://study.iitm.ac.in/ds/course_pages/BSDA5013.html",
     description: "Taught by three excellent professors, this course hopes to equip students with the full deep learning stack—covering datasets, frameworks, hardware, deployment, interpretability, and security—while applying tools and best practices to improve training and deployment under real-world constraints. I hope to gain experience in training large-scale models and identifying socially relevant problems that can be addressed using deep learning.",
-    skills: ["NLP", "Speech Technology", "Computer Vision", "PyTorch", "Deep Learning"],
+    skills: ["NLP", "Speech Technology", "Computer Vision", "PyTorch", "Deep Learning", "Lab"],
   },
   {
     title: "Reinforcement Learning",
     period: "Sep 2025",
     link: "https://study.iitm.ac.in/ds/course_pages/BSDA5007.html",
     description: "Taught by Prof. Balaraman Ravindran, this course covers the fundamentals of reinforcement learning, including Markov decision processes, dynamic programming, Monte Carlo methods, temporal-difference learning, and function approximation. I hope the intensive assignments in the course allows me to learn implementing RL algorithms",
-    skills: ["", "Theoretical AI/ML", "PyTorch"]
+    skills: ["Theoretical AI/ML", "PyTorch"]
   },
   {
     title: "Large Language Models",
